@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Black -->
+    <style name="CalcButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">#56BBFF</item>
+    </style>
+
+    <style name="CalcTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="materialButtonStyle">@style/CalcButton</item>
+    </style>
+
+    <!--Red-->
+    <style name="CalcButton.Red">
+        <item name="backgroundTint">@android:color/holo_red_dark</item>
+
+    </style>
+
+    <style name="CalcThemeRed" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="materialButtonStyle">@style/CalcButton.Red</item>
+    </style>
+
+</resources>
