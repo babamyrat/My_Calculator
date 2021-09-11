@@ -19,4 +19,5 @@
     <string name="key_equals">=</string>
     <string name="number">Number...</string>
     <string name="clear">Clear</string>
+    <string name="key_clear"><![CDATA[<=]]></string>
 </resources>

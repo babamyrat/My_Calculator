@@ -1,11 +1,21 @@
 package com.example.mycalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import com.example.mycalculator.domain.AppTheme;
+import com.example.mycalculator.storage.ThemeStorage;
+import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editText;
@@ -15,12 +25,17 @@ public class MainActivity extends AppCompatActivity {
     private boolean aBooleanMultiplication;
     private boolean aBooleanMinus;
     private boolean aBooleanPlus;
-    private ImageView imageClear;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ThemeStorage storage = new ThemeStorage(this);
+        setTheme(storage.getAppTheme().getTheme());
+
         setContentView(R.layout.activity_main);
+
 
         Button key1 = findViewById(R.id.key_1);
         Button key2 = findViewById(R.id.key_2);
@@ -37,16 +52,38 @@ public class MainActivity extends AppCompatActivity {
         Button keyDot = findViewById(R.id.key_dot);
         Button keyEquals = findViewById(R.id.key_equals);
         Button keyPlus = findViewById(R.id.key_plus);
+        Button btnClear = findViewById(R.id.btnClear);
         editText = findViewById(R.id.editTextNumber);
-        imageClear = findViewById(R.id.imageClear);
+        Button btnSetting = findViewById(R.id.btnSetting);
+        Button btnSetting2 = findViewById(R.id.btnSetting2);
+
+        btnSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                storage.setAppTheme(AppTheme.BLACK);
+                recreate();
+
+            }
+        });
+
+
+        btnSetting2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                storage.setAppTheme(AppTheme.RED);
+                recreate();
+
+            }
+
+        });
 
 
         key1.setOnClickListener(view -> {
             editText.setText(editText.getText() + "1");
         });
-        key2.setOnClickListener(view ->
-                editText.setText(editText.getText() + "2")
-        );
+        key2.setOnClickListener(view -> {
+            editText.setText(editText.getText() + "2");
+        });
         key3.setOnClickListener(view ->
                 editText.setText(editText.getText() + "3")
         );
@@ -156,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Clear
-        imageClear.setOnClickListener(view -> {
+        btnClear.setOnClickListener(view -> {
             editText.setText(" ");
         });
 
